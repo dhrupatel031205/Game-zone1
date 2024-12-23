@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2024 at 12:50 PM
+-- Generation Time: Dec 23, 2024 at 11:56 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -11,14 +11,14 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
+ 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project`
+-- Database: `game_zone`
 --
 
 -- --------------------------------------------------------
@@ -29,19 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `username` varchar(20) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, '23002170210079', '321'),
-(2, 'dhruv', '321'),
-(3, 'event1', '321'),
-(4, '9099492577', '654');
+INSERT INTO `users` (`id`, `username`, `name`, `email`, `password`) VALUES
+(1, 'Hetvi', 'Dhruv ', 'avi@gmail.com', '654'),
+(2, 'stuti321', 'Stuti', 'stuti@gmail.com', '654321'),
+(3, 'rakesh', 'Rakesh', 'rsp@gmail', '321'),
+(4, 'drp', 'Dhruv ', 'smbro@gmail.com', '963');
 
 --
 -- Indexes for dumped tables

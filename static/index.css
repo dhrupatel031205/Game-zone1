@@ -1,0 +1,9 @@
+.main-navbar{
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.logout{
+    margin-left: 500px;
+}
