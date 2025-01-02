@@ -1,32 +1,30 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
 
 input {
-    
-    padding: 10px 30px;
-    margin: 7px;
+  padding: 10px 30px;
+  margin: 7px;
 }
 
 button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 a {
-    text-decoration: none;
-    color: #4CAF50;
+  text-decoration: none;
+  color: #4caf50;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
