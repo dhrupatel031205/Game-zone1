@@ -10,22 +10,64 @@
 </head>
 
 <body>
-  <ul class="nav nav-pills p-2 align-center main-navbar">
-    <li class="nav-item">
-      <a class="nav-link active bg-success" href="/main">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-success" href="/games">Games</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-success" href="/ContactUs">Contact Us</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link text-success logout " style="cursor: pointer;" data-bs-toggle="modal"
-        data-bs-target="#logoutmodal">Log Out</a>
-    </li>
-  </ul>
-  <h3>Home Page</h3>
+  <div class="container">
+
+    <ul class="nav nav-pills p-2 align-center main-navbar">
+      <li class="nav-item">
+        <a class="nav-link active bg-success" href="/main">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-success" href="/games">Games</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-success" href="/ContactUs">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-success logout " style="cursor: pointer;" data-bs-toggle="modal"
+          data-bs-target="#logoutmodal">Log Out</a>
+      </li>
+    </ul>
+  </div>
+
+
+
+  <div class="container h-50 w-100">
+    <div class="carousel slide" id="bro" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button data-bs-target="#bro" data-bs-slide-to="0" class="active"></button>
+        <button data-bs-target="#bro" data-bs-slide-to="1"></button>
+        <button data-bs-target="#bro" data-bs-slide-to="2"></button>
+        <button data-bs-target="#bro" data-bs-slide-to="3"></button>
+        <button data-bs-target="#bro" data-bs-slide-to="4"></button>
+      </div>
+      <div class="carousel-inner h-50">
+        <div class="carousel-item active">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZZfA5yYJzQ4tO9banXdEKCyXM7xebP2BuwA&s" alt=""
+            class="d-block h-50 w-100">
+        </div>
+        <div class="carousel-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMyVkdeRSD_vGtrs7-yHVMAwHnVQhVjXB9A&s" alt=""
+            class="d-block h-50 w-100">
+        </div>
+        <div class="carousel-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9tgzm_PqpPqRQe1KQgC6cn9OmVJlTm8699w&s" alt=""
+            class="d-block h-50 w-100">
+        </div>
+        <div class="carousel-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMyVkdeRSD_vGtrs7-yHVMAwHnVQhVjXB9A&s" alt="" class="d-block h-50 w-100">
+        </div>
+        <div class="carousel-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9tgzm_PqpPqRQe1KQgC6cn9OmVJlTm8699w&s" alt="" class="d-block h-50 w-100">
+        </div>
+      </div>
+      <button class="carousel-control-prev" data-bs-target="#bro" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" data-bs-target="#bro" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
 
 
   <div class="modal fade" id="logoutmodal">
