@@ -17,12 +17,25 @@ const winningConditions = [
   [2, 4, 6],
 ];
 
+// Initialize the board with clickable cells
+function initializeBoard() {
+  gameBoard.innerHTML = ""; // Clear the board
+  for (let i = 0; i < 9; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    cell.setAttribute("data-cell-index", i);
+    cell.addEventListener("click", handleCellClick);
+    gameBoard.appendChild(cell);
+  }
+}
+
+// Handle clicks on cells
 function handleCellClick(event) {
   const clickedCell = event.target;
   const clickedIndex = parseInt(clickedCell.getAttribute("data-cell-index"));
 
   if (boardState[clickedIndex] !== "" || !gameActive) {
-    return;
+    return; // Cell already filled or game inactive
   }
 
   boardState[clickedIndex] = currentPlayer;
@@ -44,6 +57,7 @@ function handleCellClick(event) {
   statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
 }
 
+// Check for a win
 function checkWin() {
   return winningConditions.some((condition) => {
     const [a, b, c] = condition;
@@ -55,28 +69,21 @@ function checkWin() {
   });
 }
 
+// Reset the game
 function resetGame() {
   boardState = Array(9).fill("");
   currentPlayer = "X";
   gameActive = true;
-  statusDisplay.textContent = `Player X's turn`;
+  statusDisplay.textContent = "Player X's turn";
 
   document.querySelectorAll(".cell").forEach((cell) => {
     cell.textContent = "";
   });
 }
 
-function initializeBoard() {
-  gameBoard.innerHTML = "";
-  for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell", "col");
-    cell.setAttribute("data-cell-index", i);
-    cell.addEventListener("click", handleCellClick);
-    gameBoard.appendChild(cell);
-  }
-}
-
+// Add event listener to the reset button
 resetButton.addEventListener("click", resetGame);
+
+// Initialize the board when the script is loaded
 initializeBoard();
 resetGame();

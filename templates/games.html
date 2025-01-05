@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../static/index.css">
   <link rel="stylesheet" href="../static/tic-tac-toe.css">
   <link rel="stylesheet" href="../static/flappy-bird.css">
-</head> 
+</head>
 
 <body>
   <div class="container">
@@ -51,36 +51,45 @@
     </ul>
 
     <div class="tab-content">
-      <div class="tab-pane fade show active" id="game-1">
 
-        <div class="d-flex justify-content-center align-items-center vh-100">
-          <div class="container text-center">
-            <h1 class="mb-4">Welcome...</h1>
-            <h1 class="mb-4">Tic Tac Toe Game ...</h1>
-            <div id="gameBoard" class="row mx-auto"></div>
-            <div id="status" class="mt-4 fw-bold"></div>
-            <button id="resetButton" class="btn btn-primary mt-3">Reset Game</button>
+      <div class="tab-pane fade show active" id="game-1">
+        <div id="gameBoard">
+          <div class="row justify-content-center">
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-4">
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+          </div>
+          <div class="row justify-content-center mt-4">
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
+            <div class="col-2">
+              <div class="ox"></div>
+            </div>
           </div>
         </div>
-        
       </div>
-      <div class="tab-pane fade" id="game-2">
-        
-        <div id="game-container">
-          <div id="bird"></div>
-          <div class="pipe pipe-top"></div>
-          <div class="pipe pipe-bottom"></div>
-          <div id="game-over" class="d-none">
-            <h2>Game Over!</h2>
-            <p>Final Score: <span id="final-score">0</span></p>
-            <button id="restart-btn" class="btn btn-primary">Restart</button>
-          </div>
-          <div id="score">
-            <h2>Flappy Bird Game</h2>
-            Score: 0
-          </div>
-        </div>
-      </div>
+      <div class="tab-pane fade" id="game-2">Game 2</div>
       <div class="tab-pane fade" id="game-3">Game 3</div>
       <div class="tab-pane fade" id="game-4">Game 4</div>
       <div class="tab-pane fade" id="game-5">Game 5</div>
