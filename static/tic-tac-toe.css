@@ -1,13 +1,19 @@
-.ox{
-    margin: 20px;
-    padding: 50px;
-    height: 100px;
-    width: 100px;
-    cursor: pointer;
-    background: #fe7575;
-    border-radius: 10px;
+.ox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  background: #ff9797;
+  cursor: pointer;
+  border-radius: 20px;
+  user-select: none;
 }
 
-#gameBoard{
-    background: #f5f5f5;
+#gameBoard {
+  background: #f5f5f5;
+  padding: 40px;
 }

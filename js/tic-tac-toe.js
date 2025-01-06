@@ -1,89 +1,130 @@
-const gameBoard = document.getElementById("gameBoard");
-const statusDisplay = document.getElementById("status");
-const resetButton = document.getElementById("resetButton");
+window.onload = () => {
+  let btnRef = document.querySelectorAll(".ox");
+  let restartBtn = document.getElementById("restart");
+  let msgRef = document.getElementById("message");
 
-let boardState = Array(9).fill("");
-let currentPlayer = "X";
-let gameActive = true;
+  let winning = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
 
-const winningConditions = [
-  [0, 1, 2],
-  [3, 4, 5],
-  [6, 7, 8],
-  [0, 3, 6],
-  [1, 4, 7],
-  [2, 5, 8],
-  [0, 4, 8],
-  [2, 4, 6],
-];
+  let userTurn = true; // User starts the game
+  let count = 0;
+  let gameOver = false; // Track if the game is over
 
-// Initialize the board with clickable cells
-function initializeBoard() {
-  gameBoard.innerHTML = ""; // Clear the board
-  for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.setAttribute("data-cell-index", i);
-    cell.addEventListener("click", handleCellClick);
-    gameBoard.appendChild(cell);
-  }
-}
+  // Disable all cells
+  const disableBtns = () => {
+    btnRef.forEach((cell) => {
+      cell.style.pointerEvents = "none";
+    });
+  };
 
-// Handle clicks on cells
-function handleCellClick(event) {
-  const clickedCell = event.target;
-  const clickedIndex = parseInt(clickedCell.getAttribute("data-cell-index"));
+  // Enable all cells and reset styles
+  const enableBtns = () => {
+    btnRef.forEach((cell) => {
+      cell.innerText = "";
+      cell.style.pointerEvents = "auto";
+    });
+    msgRef.innerHTML = "Your Turn (X)";
+    userTurn = true;
+    count = 0;
+    gameOver = false;
+  };
 
-  if (boardState[clickedIndex] !== "" || !gameActive) {
-    return; // Cell already filled or game inactive
-  }
+  // Display win message
+  const winFunction = (letter) => {
+    if (letter === "X") {
+      msgRef.innerHTML = "User Wins! (X)";
+    } else {
+      msgRef.innerHTML = "Computer Wins! (O)";
+    }
+    disableBtns();
+    gameOver = true; // Mark the game as over
+  };
 
-  boardState[clickedIndex] = currentPlayer;
-  clickedCell.textContent = currentPlayer;
+  // Display draw message
+  const drawFunction = () => {
+    msgRef.innerHTML = "It's a Draw!";
+    gameOver = true; // Mark the game as over
+  };
 
-  if (checkWin()) {
-    statusDisplay.textContent = `Player ${currentPlayer} Wins!`;
-    gameActive = false;
-    return;
-  }
-
-  if (boardState.every((cell) => cell !== "")) {
-    statusDisplay.textContent = "It's a Draw!";
-    gameActive = false;
-    return;
-  }
-
-  currentPlayer = currentPlayer === "X" ? "O" : "X";
-  statusDisplay.textContent = `Player ${currentPlayer}'s turn`;
-}
-
-// Check for a win
-function checkWin() {
-  return winningConditions.some((condition) => {
-    const [a, b, c] = condition;
-    return (
-      boardState[a] &&
-      boardState[a] === boardState[b] &&
-      boardState[a] === boardState[c]
-    );
+  // Reset game on restart button click
+  restartBtn.addEventListener("click", () => {
+    enableBtns();
   });
-}
 
-// Reset the game
-function resetGame() {
-  boardState = Array(9).fill("");
-  currentPlayer = "X";
-  gameActive = true;
-  statusDisplay.textContent = "Player X's turn";
+  // Check for win condition
+  const winChecker = () => {
+    for (let i of winning) {
+      let [cell1, cell2, cell3] = [
+        btnRef[i[0]].innerText,
+        btnRef[i[1]].innerText,
+        btnRef[i[2]].innerText,
+      ];
+      if (cell1 !== "" && cell1 === cell2 && cell2 === cell3) {
+        winFunction(cell1);
+        return true; // Stop further checks once we have a winner
+      }
+    }
+    return false;
+  };
 
-  document.querySelectorAll(".cell").forEach((cell) => {
-    cell.textContent = "";
+  // Computer's move
+  const computerMove = () => {
+    if (gameOver) return; // Stop the computer if the game is over
+    msgRef.innerHTML = "Computer's Turn (O)";
+    setTimeout(() => {
+      let availableCells = [];
+      btnRef.forEach((cell, index) => {
+        if (cell.innerText === "") {
+          availableCells.push(index);
+        }
+      });
+
+      // Choose a random cell for the computer
+      if (availableCells.length > 0) {
+        let randomIndex = Math.floor(Math.random() * availableCells.length);
+        let selectedCell = btnRef[availableCells[randomIndex]];
+        selectedCell.innerText = "O";
+        selectedCell.style.pointerEvents = "none";
+        count++;
+
+        // Check for win or draw after computer's move
+        if (!winChecker() && count === 9) {
+          drawFunction();
+        } else if (!gameOver) {
+          msgRef.innerHTML = "Your Turn (X)";
+          userTurn = true;
+        }
+      }
+    }, 500); // Add a delay for realism
+  };
+
+  // Add click event listener to each cell
+  btnRef.forEach((cell) => {
+    cell.addEventListener("click", () => {
+      if (userTurn && !gameOver) {
+        cell.innerText = "X";
+        cell.style.pointerEvents = "none"; // Disable the cell after it's clicked
+        count++;
+        userTurn = false;
+
+        // Check for win or draw after user's move
+        if (!winChecker() && count === 9) {
+          drawFunction();
+        } else if (!gameOver) {
+          computerMove(); // Let the computer play
+        }
+      }
+    });
   });
-}
 
-// Add event listener to the reset button
-resetButton.addEventListener("click", resetGame);
-
-// Initialize the board when the script is loaded
-initializeBoard();
-resetGame();
+  // Initialize the game board
+  enableBtns();
+};
