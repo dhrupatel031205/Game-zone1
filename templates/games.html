@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="../static/index.css">
   <link rel="stylesheet" href="../static/tic-tac-toe.css">
   <link rel="stylesheet" href="../static/flappy-bird.css">
+  <link rel="stylesheet" href="../static/rock-paper-scissor.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -51,7 +53,6 @@
     </ul>
 
     <div class="tab-content">
-
       <div class="tab-pane fade show active" id="game-1">
         <div id="gameBoard">
           <div class="row justify-content-center">
@@ -70,23 +71,64 @@
             <div class="col-2 ox" tabindex="0"></div>
           </div>
           <div class="row justify-content-center">
-            <p class="col display-4 align-content-center" id="message">X Turn</p>
+            <p class="col display-4 align-content-center" id="messageB">X Turn</p>
           </div>
           <div class="row justify-content-center p-2 m-2">
-            <button class="btn btn-success" style="width: 150px;" id="restart">Reset Game</button>
+            <button class="btn btn-success" style="width: 150px;" id="restartB">Reset Game</button>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="game-2">Game 2</div>
-      <div class="tab-pane fade" id="game-3">Game 3</div>
-      <div class="tab-pane fade" id="game-4">Game 4</div>
+      <div class="tab-pane fade" id="game-2">
+
+        <div id="game-container">
+          <div id="bird"></div>
+          <div class="pipe pipe-top"></div>
+          <div class="pipe pipe-bottom"></div>
+          
+          <div id="game-over" class="d-none">
+            <h2 class="display-4">Game Over</h2>
+            <p>Final Score : <span id="final-score">0</span></p>
+            <button class="btn btn-primary" id="restart-b">Restart Game</button>
+          </div>
+          <div id="score">
+            <h2 class="display-5">Welcome to Flappy Bird Game</h2>
+            Score : 0 <br>
+            <button id="start-button" class="btn btn-primary">Start Game</button>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="game-3">
+        <div class="container game-3">
+
+          <h1 class="mb-4">Rock Paper Scissors Game</h1>
+          <div class="row justify-content-center mb-4">
+            <button class="btn btn-primary mx-3 col-3 choice-btn" id="rock">
+              <i class="fas fa-hand-rock fa-3x"></i>
+              <br>Rock
+            </button>
+            <button class="btn btn-secondary mx-3 col-3 choice-btn" id="paper">
+              <i class="fas fa-hand-paper fa-3x"></i>
+              <br>Paper
+            </button>
+            <button class="btn btn-danger mx-3 col-3 choice-btn" id="scissors">
+              <i class="fas fa-hand-scissors fa-3x"></i>
+              <br>Scissors
+            </button>
+          </div>
+          <div id="result" class="mb-4"></div>
+          <div class="d-flex justify-content-between mb-3">
+            <p>Player: <span id="player-score">0</span></p>
+            <p>Computer: <span id="computer-score">0</span></p>
+            <p>Ties: <span id="tie-count">0</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="game-4">
+
+      </div>
       <div class="tab-pane fade" id="game-5">Game 5</div>
     </div>
   </div>
-
-
-
-
 
   <div class="modal fade" id="logoutmodal">
     <div class="modal-dialog">
@@ -109,136 +151,131 @@
   <script src="/js/flappy-bird.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    window.onload = () => {
-      let btnRef = document.querySelectorAll(".ox");
-      let restartBtn = document.getElementById("restart");
-      let msgRef = document.getElementById("message");
+    const bird = document.getElementById("bird");
+    const gameContainer = document.getElementById("game-container");
+    const scoreElement = document.getElementById("score");
+    const gameOverScreen = document.getElementById("game-over");
+    const finalScoreElement = document.getElementById("final-score");
+    const restartButton = document.getElementById("restart-b");
+    const startButton = document.getElementById("start-button");
 
-      let winning = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-      ];
+    let birdTop = 200;
+    let birdGravity = 2;
+    let jumpHeight = 40;
+    let isGameOver = false;
+    let score = 0;
+    let gameStarted = false;
+    let pipeSpeed = 4; // Speed of the pipes
 
-      let userTurn = true; // User starts the game
-      let count = 0;
-      let gameOver = false; // Track if the game is over
+    function spawnPipes() {
+      const pipeTop = document.querySelector(".pipe-top");
+      const pipeBottom = document.querySelector(".pipe-bottom");
 
-      // Disable all cells
-      const disableBtns = () => {
-        btnRef.forEach((cell) => {
-          cell.style.pointerEvents = "none";
-        });
-      };
+      // Initial pipe positions outside the screen
+      pipeTop.style.left = "1500px";
+      pipeBottom.style.left = "1500px";
 
-      // Enable all cells and reset styles
-      const enableBtns = () => {
-        btnRef.forEach((cell) => {
-          cell.innerText = "";
-          cell.style.pointerEvents = "auto";
-        });
-        msgRef.innerHTML = "Your Turn (X)";
-        userTurn = true;
-        count = 0;
-        gameOver = false;
-      };
+      // Randomize pipe heights
+      const topHeight = Math.random() * 200 + 50;
+      const bottomHeight = 600 - topHeight - 150;
 
-      // Display win message
-      const winFunction = (letter) => {
-        if (letter === "X") {
-          msgRef.innerHTML = "User Wins! (X)";
-        } else {
-          msgRef.innerHTML = "Computer Wins! (O)";
+      pipeTop.style.height = `${topHeight}px`;
+      pipeBottom.style.height = `${bottomHeight}px`;
+
+      setInterval(() => {
+        if (isGameOver) return;
+
+        const pipeLeft = parseInt(pipeTop.style.left.replace("px", ""));
+        pipeTop.style.left = `${pipeLeft - pipeSpeed}px`; // Pipe speed
+        pipeBottom.style.left = `${pipeLeft - pipeSpeed}px`;
+
+        if (pipeLeft < -60) {
+          pipeTop.style.left = "1500px";
+          pipeBottom.style.left = "1500px";
+
+          const newTopHeight = Math.random() * 200 + 50;
+          pipeTop.style.height = `${newTopHeight}px`;
+          pipeBottom.style.height = `${600 - newTopHeight - 150}px`;
+
+          if (!isGameOver) score++;
         }
-        disableBtns();
-        gameOver = true; // Mark the game as over
-      };
 
-      // Display draw message
-      const drawFunction = () => {
-        msgRef.innerHTML = "It's a Draw!";
-        gameOver = true; // Mark the game as over
-      };
-
-      // Reset game on restart button click
-      restartBtn.addEventListener("click", () => {
-        enableBtns();
-      });
-
-      // Check for win condition
-      const winChecker = () => {
-        for (let i of winning) {
-          let [cell1, cell2, cell3] = [
-            btnRef[i[0]].innerText,
-            btnRef[i[1]].innerText,
-            btnRef[i[2]].innerText,
-          ];
-          if (cell1 !== "" && cell1 === cell2 && cell2 === cell3) {
-            winFunction(cell1);
-            return true; // Stop further checks once we have a winner
-          }
+        // Collision detection
+        if (
+          pipeLeft < 90 &&
+          pipeLeft > 50 &&
+          (bird.offsetTop < pipeTop.offsetHeight ||
+            bird.offsetTop + bird.offsetHeight > 600 - pipeBottom.offsetHeight)
+        ) {
+          endGame();
         }
-        return false;
-      };
+      }, 20); // Adjust interval to control smoothness
+    }
 
-      // Computer's move
-      const computerMove = () => {
-        if (gameOver) return; // Stop the computer if the game is over
-        msgRef.innerHTML = "Computer's Turn (O)";
-        setTimeout(() => {
-          let availableCells = [];
-          btnRef.forEach((cell, index) => {
-            if (cell.innerText === "") {
-              availableCells.push(index);
-            }
-          });
+    function moveBird() {
+      if (!gameStarted) return;
 
-          // Choose a random cell for the computer
-          if (availableCells.length > 0) {
-            let randomIndex = Math.floor(Math.random() * availableCells.length);
-            let selectedCell = btnRef[availableCells[randomIndex]];
-            selectedCell.innerText = "O";
-            selectedCell.style.pointerEvents = "none";
-            count++;
+      birdTop += birdGravity;
+      bird.style.top = `${birdTop}px`;
 
-            // Check for win or draw after computer's move
-            if (!winChecker() && count === 9) {
-              drawFunction();
-            } else if (!gameOver) {
-              msgRef.innerHTML = "Your Turn (X)";
-              userTurn = true;
-            }
-          }
-        }, 500); // Add a delay for realism
-      };
+      if (birdTop > 560 || birdTop < 0) {
+        endGame();
+      }
+    }
 
-      // Add click event listener to each cell
-      btnRef.forEach((cell) => {
-        cell.addEventListener("click", () => {
-          if (userTurn && !gameOver) {
-            cell.innerText = "X";
-            cell.style.pointerEvents = "none"; // Disable the cell after it's clicked
-            count++;
-            userTurn = false;
+    function jump() {
+      if (!gameStarted) return;
 
-            // Check for win or draw after user's move
-            if (!winChecker() && count === 9) {
-              drawFunction();
-            } else if (!gameOver) {
-              computerMove(); // Let the computer play
-            }
-          }
-        });
-      });
+      birdTop -= jumpHeight;
+    }
 
-      // Initialize the game board
-      enableBtns();
-    };
+    function startGame() {
+      gameStarted = true;
+      startButton.style.display = "none"; // Hide start button
+      spawnPipes();
+    }
+
+    function endGame() {
+      isGameOver = true;
+      gameOverScreen.classList.remove("d-none");
+      finalScoreElement.textContent = score;
+      clearInterval(gameLoop);
+    }
+
+    function restartGame() {
+      window.location.reload();
+    }
+
+    // Event Listeners
+    document.addEventListener("keydown", (e) => {
+      if (e.key === " " && gameStarted) jump();
+    });
+    document.addEventListener("click", () => {
+      if (gameStarted) jump();
+    });
+
+    restartButton.addEventListener("click", restartGame);
+    startButton.addEventListener("click", startGame); // Start game when button clicked
+
+    // Update Score
+    setInterval(() => {
+      if (gameStarted && !isGameOver) {
+        scoreElement.textContent = `Score: ${score}`;
+      }
+    }, 100);
+
+    // Main Game Loop
+    const gameLoop = setInterval(() => {
+      if (!isGameOver) moveBird();
+    }, 20);
+
+    // Difficulty Adjustment
+    setInterval(() => {
+      if (gameStarted && !isGameOver) {
+        birdGravity += 0.01; // Gradually increase gravity
+        pipeSpeed += 0.1; // Increase pipe speed over time
+      }
+    }, 1000); // Every second
 
   </script>
 </body>

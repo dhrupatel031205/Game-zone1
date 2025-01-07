@@ -1,0 +1,52 @@
+.game-3 {
+    height: 600px;
+    background-color: #ff6cf8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+h1 {
+    font-size: 28px;
+    color: #333;
+}
+
+.choice-btn {
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.choice-btn:hover {
+    transform: scale(1.1);
+}
+
+#result {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+#score {
+    font-size: 18px;
+}
+
+button i {
+    font-size: 50px;
+}
+
+#player-score, #computer-score, #tie-count {
+    font-weight: bold;
+}
+
+.d-flex {
+    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .choice-btn {
+        margin-bottom: 15px;
+        width: 80%;
+    }
+}

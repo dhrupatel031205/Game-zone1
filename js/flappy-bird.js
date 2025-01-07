@@ -3,7 +3,8 @@ const gameContainer = document.getElementById("game-container");
 const scoreElement = document.getElementById("score");
 const gameOverScreen = document.getElementById("game-over");
 const finalScoreElement = document.getElementById("final-score");
-const restartButton = document.getElementById("restart-btn");
+const restartButton = document.getElementById("restart-b");
+const startButton = document.getElementById("start-button");
 
 let birdTop = 200;
 let birdGravity = 2;
@@ -11,10 +12,15 @@ let jumpHeight = 40;
 let isGameOver = false;
 let score = 0;
 let gameStarted = false;
+let pipeSpeed = 4; // Speed of the pipes
 
 function spawnPipes() {
   const pipeTop = document.querySelector(".pipe-top");
   const pipeBottom = document.querySelector(".pipe-bottom");
+
+  // Initial pipe positions outside the screen
+  pipeTop.style.left = "400px";
+  pipeBottom.style.left = "400px";
 
   // Randomize pipe heights
   const topHeight = Math.random() * 200 + 50;
@@ -26,11 +32,9 @@ function spawnPipes() {
   setInterval(() => {
     if (isGameOver) return;
 
-    const pipeLeft = parseInt(
-      window.getComputedStyle(pipeTop).getPropertyValue("left")
-    );
-    pipeTop.style.left = `${pipeLeft - 2}px`;
-    pipeBottom.style.left = `${pipeLeft - 2}px`;
+    const pipeLeft = parseInt(pipeTop.style.left.replace("px", ""));
+    pipeTop.style.left = `${pipeLeft - pipeSpeed}px`; // Pipe speed
+    pipeBottom.style.left = `${pipeLeft - pipeSpeed}px`;
 
     if (pipeLeft < -60) {
       pipeTop.style.left = "400px";
@@ -43,6 +47,7 @@ function spawnPipes() {
       if (!isGameOver) score++;
     }
 
+    // Collision detection
     if (
       pipeLeft < 90 &&
       pipeLeft > 50 &&
@@ -51,7 +56,7 @@ function spawnPipes() {
     ) {
       endGame();
     }
-  }, 20);
+  }, 20); // Adjust interval to control smoothness
 }
 
 function moveBird() {
@@ -66,12 +71,15 @@ function moveBird() {
 }
 
 function jump() {
-  if (!gameStarted) {
-    gameStarted = true;
-    spawnPipes();
-  }
+  if (!gameStarted) return;
 
   birdTop -= jumpHeight;
+}
+
+function startGame() {
+  gameStarted = true;
+  startButton.style.display = "none"; // Hide start button
+  spawnPipes();
 }
 
 function endGame() {
@@ -87,11 +95,14 @@ function restartGame() {
 
 // Event Listeners
 document.addEventListener("keydown", (e) => {
-  if (e.key === " ") jump();
+  if (e.key === " " && gameStarted) jump();
 });
-document.addEventListener("click", jump);
+document.addEventListener("click", () => {
+  if (gameStarted) jump();
+});
 
 restartButton.addEventListener("click", restartGame);
+startButton.addEventListener("click", startGame); // Start game when button clicked
 
 // Update Score
 setInterval(() => {
@@ -104,3 +115,11 @@ setInterval(() => {
 const gameLoop = setInterval(() => {
   if (!isGameOver) moveBird();
 }, 20);
+
+// Difficulty Adjustment
+setInterval(() => {
+  if (gameStarted && !isGameOver) {
+    birdGravity += 0.01; // Gradually increase gravity
+    pipeSpeed += 0.1; // Increase pipe speed over time
+  }
+}, 1000); // Every second

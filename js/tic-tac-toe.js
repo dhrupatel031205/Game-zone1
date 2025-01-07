@@ -1,7 +1,7 @@
 window.onload = () => {
   let btnRef = document.querySelectorAll(".ox");
-  let restartBtn = document.getElementById("restart");
-  let msgRef = document.getElementById("message");
+  let restartBtn = document.getElementById("restartB");
+  let msgRef = document.getElementById("messageB");
 
   let winning = [
     [0, 1, 2],

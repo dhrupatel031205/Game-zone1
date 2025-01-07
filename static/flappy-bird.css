@@ -1,25 +1,20 @@
-/* styles.css */
 
-/* General body styles */
 h2 {
-  color: #ffffff;
+  color: #32f248d1;
   text-align: center;
   margin: 5px;
 }
-/* Game container */
+
 #game-container {
   position: relative;
-  width: 400px;
+  display: flex;
+  justify-content: center;
   height: 600px;
-  background: url("https://images.unsplash.com/photo-1513477967668-2aaf11838bd6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTE2fHxyYW5kb20lMjBlbnZpb3JubWVuZCUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D")
-    no-repeat center;
-  background-size: cover;
-  border: 3px solid #000;
-  border-radius: 20px;
+  background: rgb(255, 234, 234)    no-repeat center;
   overflow: hidden;
 }
 
-/* Bird design */
+
 #bird {
   width: 40px;
   height: 40px;
@@ -31,7 +26,7 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Pipes */
+
 .pipe {
   width: 60px;
   background-color: green;
@@ -56,7 +51,7 @@ h2 {
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  color: white;
+  color: rgb(59, 242, 255);
   font-weight: bold;
   text-align: center;
 }
@@ -79,6 +74,6 @@ h2 {
   color: red;
 }
 
-#restart-btn {
+#restart-b {
   margin-top: 10px;
 }
