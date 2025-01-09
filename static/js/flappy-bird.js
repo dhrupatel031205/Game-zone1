@@ -4,7 +4,7 @@ const scoreElement = document.getElementById("score");
 const gameOverScreen = document.getElementById("game-over");
 const finalScoreElement = document.getElementById("final-score");
 const restartButton = document.getElementById("restart-b");
-const startButton = document.getElementById("start-button");
+const startButton = document.getElementById("start-button1");
 
 let birdTop = 200;
 let birdGravity = 2;

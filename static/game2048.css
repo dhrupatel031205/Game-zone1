@@ -9,7 +9,7 @@
   justify-content: center;
 }
 
-.game-container {
+.game-container4 {
   background: #bbada0;
   border-radius: 10px;
   padding: 20px;
@@ -101,11 +101,11 @@
   margin-top: 20px;
 }
 
-.game-over {
+#game-over2048 {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 6, 6, 0.5);
   color: white;
   display: flex;
   justify-content: center;
