@@ -1,0 +1,116 @@
+.game4 {
+  background: #63e5a2;
+  height: 600px;
+  font-family: 'Arial', sans-serif;
+  padding: 50px;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  background: #bbada0;
+  border-radius: 10px;
+  padding: 20px;
+  width: 370px;
+  /* position: relative; */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.tile {
+  background: #cdc1b4;
+  border-radius: 5px;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #776e65;
+}
+
+.tile[data-value="2"] {
+  background: #eee4da;
+  color: #776e65;
+}
+
+.tile[data-value="4"] {
+  background: #ede0c8;
+  color: #776e65;
+}
+
+.tile[data-value="8"] {
+  background: #f2b179;
+  color: #f9f6f2;
+}
+
+.tile[data-value="16"] {
+  background: #f59563;
+  color: #f9f6f2;
+}
+
+.tile[data-value="32"] {
+  background: #f67c5f;
+  color: #f9f6f2;
+}
+
+.tile[data-value="64"] {
+  background: #f65e3b;
+  color: #f9f6f2;
+}
+
+.tile[data-value="128"] {
+  background: #edcf72;
+  color: #f9f6f2;
+}
+
+.tile[data-value="256"] {
+  background: #edcc61;
+  color: #f9f6f2;
+}
+
+.tile[data-value="512"] {
+  background: #edc850;
+  color: #f9f6f2;
+}
+
+.tile[data-value="1024"] {
+  background: #edc53f;
+  color: #f9f6f2;
+}
+
+.tile[data-value="2048"] {
+  background: #edc22e;
+  color: #f9f6f2;
+}
+
+.controls {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.game-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  display: none;
+}
