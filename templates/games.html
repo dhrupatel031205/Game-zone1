@@ -84,7 +84,7 @@
           <div id="bird"></div>
           <div class="pipe pipe-top"></div>
           <div class="pipe pipe-bottom"></div>
-          
+
           <div id="game-over" class="d-none">
             <h2 class="display-4">Game Over</h2>
             <p>Final Score : <span id="final-score">0</span></p>
@@ -147,8 +147,9 @@
       </div>
     </div>
   </div>
-  <script src="/js/tic-tac-toe.js"></script>
-  <script src="/js/flappy-bird.js"></script>
+  <script src="{{url_for('static', filename='/js/tic-tac-toe.js')}}"></script>
+  <script src="{{url_for('static', filename='/js/flappy-bird.js')}}"></script>
+  <script src="{{url_for('static', filename='/js/stone-paper-scissor.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
