@@ -102,9 +102,7 @@
 }
 
 #game-over2048 {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   background: rgba(255, 6, 6, 0.5);
   color: white;
   display: flex;
@@ -112,5 +110,4 @@
   align-items: center;
   font-size: 24px;
   font-weight: bold;
-  display: none;
 }
