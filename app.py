@@ -6,6 +6,7 @@ from ContactUs import ContactUs_bp
 from main import main_bp
 from logout import logout_bp
 app = Flask(__name__)
+app.secret_key = "drpatel"
 
 app.register_blueprint(login_bp)
 app.register_blueprint(signup_bp)
