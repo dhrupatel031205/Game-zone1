@@ -5,6 +5,8 @@ from games import games_bp
 from ContactUs import ContactUs_bp
 from main import main_bp
 from logout import logout_bp
+from profile_1 import profile_bp
+
 app = Flask(__name__)
 app.secret_key = "drpatel"
 
@@ -14,6 +16,7 @@ app.register_blueprint(games_bp)
 app.register_blueprint(ContactUs_bp)
 app.register_blueprint(main_bp)
 app.register_blueprint(logout_bp)
+app.register_blueprint(profile_bp)
 
 @app.route('/')
 def home():
