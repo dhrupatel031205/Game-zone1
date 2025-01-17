@@ -16,8 +16,8 @@
 </head>
 
 <body>
-  <div class="container">
-    <ul class="nav nav-pills p-2 main-navbar navbar1">
+  <div class="container navbar1">
+    <ul class="nav nav-pills p-2 main-navbar">
       <li class="nav-item">
         <a class="nav-link text-white" href="/main">Home</a>
       </li>
@@ -193,12 +193,6 @@
       </div>
     </div>
   </div>
-  <form id="gameDataForm" action="/save_game_data" method="POST" style="display: none;">
-    <input type="hidden" name="username" id="form-username" value="Guest">
-    <input type="hidden" name="game_name" id="form-game-name">
-    <input type="hidden" name="score" id="form-score">
-    <input type="hidden" name="time_played" id="form-time-played">
-  </form>
   
   <script src="../static/js/tic-tac-toe.js"></script>
   <script src="../static/js/flappy-bird.js"></script>

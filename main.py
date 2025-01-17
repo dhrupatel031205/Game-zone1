@@ -5,5 +5,4 @@ main_bp = Blueprint('main', __name__)
 
 @main_bp.route('/main')
 def main() :
-    username = session.get('username')
-    return render_template('main.html',username = username)
+    return render_template('main.html')

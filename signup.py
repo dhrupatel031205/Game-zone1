@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for,session
 from mysql.connector.errors import IntegrityError
 from db_connection import get_db_connection
 
@@ -11,7 +11,6 @@ def signup():
         password = request.form.get('password')
         name = request.form.get('name')
         email = request.form.get('email')
-        
         try:
             conn = get_db_connection()
             cursor = conn.cursor()

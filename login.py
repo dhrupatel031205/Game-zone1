@@ -16,7 +16,9 @@ def login():
         conn.close()
 
         if user:
-            session['username'] = username
+            session['name'] = user[2]
+            session['username'] = user[1]
+            session['email'] = user[3]
             return redirect(url_for('main.main'))  # Redirect to home page
         else:
             return "Invalid username or password", 400
