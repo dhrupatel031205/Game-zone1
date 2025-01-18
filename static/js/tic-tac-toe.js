@@ -39,19 +39,24 @@ window.onload = () => {
 
   // Display win message
   const winFunction = (letter) => {
+    var sendData = "";
     if (letter === "X") {
       msgRef.innerHTML = "User Wins! (X)";
+      sendData = `user wins`;
     } else {
       msgRef.innerHTML = "Computer Wins! (O)";
+      sendData = `computer wins`;
     }
     disableBtns();
     gameOver = true; // Mark the game as over
+    saveData(sendData);
   };
 
   // Display draw message
   const drawFunction = () => {
     msgRef.innerHTML = "It's a Draw!";
     gameOver = true; // Mark the game as over
+    saveData("it is draw");
   };
 
   // Reset game on restart button click
@@ -125,6 +130,33 @@ window.onload = () => {
     });
   });
 
-  // Initialize the game board
   enableBtns();
+
+  const saveData = (win) => {
+    const data = {
+      result: win, 
+      time_played: new Date().toISOString(), 
+    };
+
+    // Use the Fetch API to send the data to the backend
+    fetch("/save_tic_tac_toe_data", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to save game data");
+        }
+        return response.json();
+      })
+      .then((responseData) => {
+        console.log("Game data saved successfully:", responseData);
+      })
+      .catch((error) => {
+        console.error("Error saving game data:", error);
+      });
+  };
 };
