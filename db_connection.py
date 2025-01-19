@@ -1,10 +1,5 @@
 import mysql.connector
 
-# Configure database connection
-DB_CONFIG = {
-    
-}
-
 def get_db_connection():
     try:
         connection = mysql.connector.connect(  host="localhost",

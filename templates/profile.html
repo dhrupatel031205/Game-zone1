@@ -41,20 +41,99 @@
             <h2>
                 Your Profile :
             </h2>
-            <h4>
-                Name : {{name}}
-            </h4>
-            <h4>
-                Email : {{email}}
-            </h4>
-            <h4>
-                Username : {{username}}
-            </h4>
+            {% for user in profile_data %}
+            <div class="bg-info p-2 m-2">
+
+                <h4>
+                    Name : {{ user[2] }}
+                </h4>
+                <h4>
+                    Email : {{ user[3] }}
+                </h4>
+                <h4>
+                    Username : {{ user[1] }}
+                </h4>
+
+            </div>
+            {% endfor %}
         </div>
         <div class="container" id="games-played">
             <h2>Your Previous Score :</h2>
-            
+            <div class="bg-white p-4">
+                <h3>Tic Tac Toe : </h3>
+                {% for tttdata in tic_tac_toe_data %}
+                <div class="bg-info p-2 m-2">
 
+                    <h4>Play : {{ loop.index }}</h4>
+                    <h4>
+                        Result : {{ tttdata[2] }}
+                    </h4>
+                    <h4>
+                        Time : {{ tttdata[3] }}
+                    </h4>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="bg-white p-4">
+                <h3>Flappy Bird : </h3>
+                {% for fddata in flappy_bird_data %}
+                <div>
+
+                    <h4>Play : {{ loop.index }}</h4>
+                    <h4>
+                        Result : {{ fddata[2] }}
+                    </h4>
+                    <h4>
+                        Time : {{ fddata[3] }}
+                    </h4>
+                </div>
+
+                {% endfor %}
+            </div>
+            <div class="bg-white p-4">
+                <h3>Stone Paper Scissor : </h3>
+                {% for spcdata in rock_paper_scissor_data %}
+                <div class="m-2 bg-info p-2">
+
+                    <h4>Play : {{ loop.index }}</h4>
+                    <h4>
+                        Player Score : {{ spcdata[2] }}
+                    </h4>
+                    <h4>
+                        Computer Score : {{ spcdata[3] }}
+                    </h4>
+                    <h4>
+                        Tie Score : {{ spcdata[4] }}
+                    </h4>
+                    <h4>
+                        Result : {{ spcdata[5] }}
+                    </h4>
+                    <h4>
+                        Time : {{ spcdata[6] }}
+                    </h4>
+
+                </div>
+                {% endfor %}
+            </div>
+            <div class="bg-white p-4">
+                <h3>Game 2048 : </h3>
+                {% for g2048data in game_2048_data %}
+                <div class="m-2 bg-info p-2">
+
+                    <h4>Play : {{ loop.index }}</h4>
+                    <h4>
+                        Score : {{ g2048data[2] }}
+                    </h4>
+                    <h4>
+                        Time Duration : {{ g2048data[3] }}
+                    </h4>
+                    <h4>
+                        Time : {{ g2048data[4] }}
+                    </h4>
+
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="modal fade" id="logoutmodal">
