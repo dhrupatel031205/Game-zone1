@@ -10,3 +10,10 @@ def profile() :
     username = session.get('username')
     email  = session.get("email")
     return render_template('profile.html',username = username,name =  name,email = email)
+
+
+@profile_bp.route('/games_data',methods = ['GET','POST'])
+
+def games_data() :
+    print("Hello World")
+
