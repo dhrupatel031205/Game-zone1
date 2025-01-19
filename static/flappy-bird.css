@@ -1,79 +1,27 @@
-
-h2 {
-  color: #32f248d1;
-  text-align: center;
-  margin: 5px;
-}
-
-#game-container {
-  position: relative;
+.game-container2 {
+  padding: 20px;
   display: flex;
   justify-content: center;
-  height: 600px;
-  background: rgb(255, 234, 234)    no-repeat center;
-  overflow: hidden;
 }
 
-
-#bird {
-  width: 40px;
-  height: 40px;
-  background: url("https://mir-s3-cdn-cf.behance.net/projects/404/b9ad4b206551589.Y3JvcCwyMTYwLDE2ODksMCwyNDU.jpg");
-  border-radius: 50%;
-  position: absolute;
-  top: 200px;
-  left: 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+canvas {
+  background: #fff;
+  border: 1px solid #000;
 }
 
-
-.pipe {
-  width: 60px;
-  background-color: green;
-  position: absolute;
-  right: -60px;
-  border: 2px solid darkgreen;
-  border-radius: 20px; /* Rounded edges for the pipes */
-}
-
-.pipe-top {
-  top: 0;
-}
-
-.pipe-bottom {
-  bottom: 0;
-}
-
-/* Scoreboard */
-#score {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 24px;
-  color: rgb(59, 242, 255);
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Game over screen */
-#game-over {
+#startButton3,
+#restartButton3 {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
-#game-over h2 {
-  margin: 0;
-  color: red;
+#restartButton3 {
+  display: none;
 }
 
-#restart-b {
-  margin-top: 10px;
+#game-2 {
+  background: #fc6363;
 }

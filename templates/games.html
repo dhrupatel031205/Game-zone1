@@ -86,24 +86,13 @@
         </div>
       </div>
       <div class="tab-pane fade" id="game-2">
-
-        <div id="game-container">
-          <div id="bird"></div>
-          <div class="pipe pipe-top"></div>
-          <div class="pipe pipe-bottom"></div>
-
-          <div id="game-over" class="d-none">
-            <h2 class="display-4">Game Over</h2>
-            <p>Final Score : <span id="final-score">0</span></p>
-            <button class="btn btn-primary" id="restart-b">Restart Game</button>
-          </div>
-          <div id="score">
-            <h2 class="display-5">Welcome to Flappy Bird Game</h2>
-            Score : 0 <br>
-            <button id="start-button1" class="btn btn-primary">Start Game</button>
-          </div>
+        <div class="game-container2">
+          <canvas id="gameCanvas" width="400" height="600"></canvas>
+          <button id="startButton3" class="btn btn-success">Start Game</button>
+          <button id="restartButton3" class="btn btn-primary">Restart Game</button>
         </div>
       </div>
+
       <div class="tab-pane fade" id="game-3">
         <div class="container game-3">
 
@@ -135,7 +124,7 @@
         </div>
       </div>
       <div class="tab-pane fade" id="game-4">
-        <div class="container  game4">
+        <div class="container game4">
           <div class="game-container4">
             <div class="header">
               <h1 class="text-dark">2048</h1>

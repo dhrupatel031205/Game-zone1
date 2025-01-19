@@ -115,6 +115,3 @@ def save_game2048_data() :
     except Exception as e :
         print(f"Error: {e}")
         return jsonify({'error': str(e)}), 500
-    
-    
-    

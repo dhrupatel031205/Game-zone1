@@ -19,6 +19,7 @@ function initializeGrid() {
   gameOverElement.style.display = "none";
   startTime = Date.now();
   gameTime = 0;
+  highScore = 0;
   addRandomTile();
   addRandomTile();
   renderGrid();
@@ -186,7 +187,7 @@ function saveData() {
   const data = {
     score :highScore,
     timestamp : new Date().toISOString(),
-    timeplayed : timerInterval,
+    timeplayed : gameTime,
   }
 
   fetch("/save_game2048_data",{
