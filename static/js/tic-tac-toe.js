@@ -148,7 +148,7 @@ window.onload = () => {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to save game data");
+          throw new Error("Failed to save tic tac toe game data");
         }
         return response.json();
       })

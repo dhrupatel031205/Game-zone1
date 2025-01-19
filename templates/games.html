@@ -122,11 +122,15 @@
               <br>Scissors
             </button>
           </div>
-          <div id="result" class="mb-4"></div>
-          <div class="d-flex justify-content-between mb-3">
-            <p>Player: <span id="player-score">0</span></p>
-            <p>Computer: <span id="computer-score">0</span></p>
-            <p>Ties: <span id="tie-count">0</span></p>
+          <div>
+            <p>Player Score: <span id="player-score">0</span></p>
+            <p>Computer Score: <span id="computer-score">0</span></p>
+            <p>Number of Ties: <span id="tie-count">0</span></p>
+          </div>
+          <div>
+            <p id="result">Make your choice to start the game!</p>
+            <p id="final-result"></p>
+            <button id="restart" class="btn btn-success">Restart Game</button>
           </div>
         </div>
       </div>
@@ -139,7 +143,7 @@
               <p>High Score: <span id="high-score">0</span></p>
             </div>
             <div class="grid" id="grid2048">
-            </div> 
+            </div>
             <div class="controls">
               <button id="restart2048" class="btn btn-primary">Restart</button>
             </div>
@@ -160,13 +164,13 @@
         </div>
       </div>
       <div class="tab-pane fade" id="game-5">
-        <div class="container game-5"> 
+        <div class="container game-5">
           <div id="start-screen">
             <button id="start-button5">Start Game</button>
           </div>
           <div id="game-container5">
             <div id="basket"></div>
-            <div id="scoreboard5"> 
+            <div id="scoreboard5">
               <span>Score: <span id="score5">0</span></span>
             </div>
           </div>
@@ -193,7 +197,7 @@
       </div>
     </div>
   </div>
-  
+
   <script src="../static/js/tic-tac-toe.js"></script>
   <script src="../static/js/flappy-bird.js"></script>
   <script src="../static/js/stone-paper-scissor.js"></script>
