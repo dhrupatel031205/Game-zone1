@@ -86,6 +86,7 @@ function endGame() {
   isGameOver = true;
   gameOverScreen.classList.remove("d-none");
   finalScoreElement.textContent = score;
+  saveData();
   clearInterval(gameLoop);
 }
 
@@ -123,3 +124,32 @@ setInterval(() => {
     pipeSpeed += 0.1; // Increase pipe speed over time
   }
 }, 1000); // Every second
+
+const saveData = () => {
+  const data = {
+    score: score,
+    timestamp: new Date().toISOString(),
+  };
+  
+  fetch("/save_flappy_bird_data", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to save flappy bird game data");
+      }
+      return response.json();
+    })
+
+    .then((responseData) => {
+      console.log("Game data saved successfully:", responseData);
+    })
+
+    .catch((error) => {
+      console.log(`Error to saving game flappy bird data ${error} `);
+    });
+};

@@ -1,8 +1,6 @@
 from flask import Blueprint, render_template, request, jsonify,session
 from db_connection import get_db_connection
 
-
-# Blueprint setup
 games_bp = Blueprint('games', __name__)
 
 @games_bp.route('/games')
@@ -34,17 +32,17 @@ def save_tic_tac_toe_data():
 
 
 @games_bp.route("/save_flappy_bird_data",methods =['POST']) 
-def save_flapy_bird_data() :
+def save_flappy_bird_data() :
     try:
         username = session.get("username")
         data = request.get_json()
-        score = data.get("score")
-        timestamp = data.get("timestamp")
+        score = data.get('score')
+        timestamp = data.get('timestamp')
 
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("""
-                       INSERT INTO flappy_bird(username, score, timestamp) VALUES(%s,%s,%S)
+                       INSERT INTO flappy_bird(username, score, timestamp) VALUES(%s,%s,%s)
                        """,(username, score,timestamp))
 
         conn.commit()
@@ -91,3 +89,32 @@ def save_stone_paper_scissor_data():
         # Log the error for debugging (optional)
         print(f"Error: {e}")
         return jsonify({'error': str(e)}), 500
+
+
+@games_bp.route('/save_game2048_data',methods = ['POST'])
+
+def save_game2048_data() :
+    try:
+        username = session.get('username')
+        data = request.get_json()
+        score = data.get('score')
+        timestamp = data.get('timestamp')
+        timeplayed = data.get('timeplayed')
+        
+        conn = get_db_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("INSERT INTO game_2048(username, score, time_played,time_stamp) VALUES (%s,%s,%s,%s)",(username,score,timeplayed,timestamp))
+        
+        
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return jsonify({'message': ' game 2048 data saved successfully!'}), 200
+  
+    except Exception as e :
+        print(f"Error: {e}")
+        return jsonify({'error': str(e)}), 500
+    
+    
+    

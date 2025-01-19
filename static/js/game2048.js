@@ -162,6 +162,7 @@ function checkGameOver() {
   }
   gameOverElement.style.display = "flex";
   clearInterval(timerInterval); // Stop the timer when the game is over
+  saveData()
 }
 
 function updateHighScore() {
@@ -175,11 +176,32 @@ function updateHighScore() {
 function updateTime() {
   timerInterval = setInterval(() => {
     if (gameOverElement.style.display !== "flex") {
-      // Only update time if the game is not over
       gameTime = Math.floor((Date.now() - startTime) / 1000);
       timeElement.textContent = gameTime;
     }
   }, 1000);
+}
+
+function saveData() {
+  const data = {
+    score :highScore,
+    timestamp : new Date().toISOString(),
+    timeplayed : timerInterval,
+  }
+
+  fetch("/save_game2048_data",{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+  .then((responseData)=>{
+    console.log(`Game data is saved successfully : ${responseData}`);
+  })
+  .catch((error) =>{
+    console.log(`Error in saving game 2048 data: ${error}`);
+  })
 }
 
 document.addEventListener("keydown", (e) => {
