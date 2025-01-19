@@ -11,35 +11,41 @@
   <link rel="stylesheet" href="../static/flappy-bird.css">
   <link rel="stylesheet" href="../static/rock-paper-scissor.css">
   <link rel="stylesheet" href="../static/game2048.css">
-  <link rel="stylesheet" href="../static/object-falling.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
-  <div class="container navbar1">
-    <ul class="nav nav-pills p-2 main-navbar">
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/main">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active bg-success" href="/games">Games</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white bg-danger logout" style="cursor: pointer;" data-bs-toggle="modal"
-          data-bs-target="#logoutmodal">Log Out</a>
-      </li>
-    </ul>
+  <div class="container">
+
+    <div class="container navbar1">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="/main">GameZone</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navlinks navbar-nav">
+              <a class="nav-link text-white" href="/main">Home</a>
+              <a class="nav-link text-white active bg-success " href="/games">Games</a>
+              <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
+              <a class="nav-link text-white" href="/profile">Profile</a>
+
+
+              <button id="logout" class="nav-link text-white bg-danger" data-bs-toggle="modal"
+                data-bs-target="#logoutmodal">Log Out</button>
+
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </div>
 
 
   <div class="container">
-    <ul class="nav nav-tabs bg-success">
+    <ul class="nav nav-tabs bg-success d-flex justify-content-center">
       <li class="nav-item">
         <a href="#game-1" class="nav-link text-info active" data-bs-target="#game-1" data-bs-toggle="tab">Tic Tac
           Toe</a>
@@ -75,7 +81,7 @@
             <div class="col-2 ox" tabindex="0"></div>
           </div>
           <div class="row justify-content-center">
-            <p class="col display-4 align-content-center" id="messageB">X Turn</p>
+            <p class="col display-4 text-center" id="messageB">X Turn</p>
           </div>
           <div class="row justify-content-center p-2 m-2">
             <button class="btn btn-success" style="width: 150px;" id="restartB">Reset Game</button>
@@ -149,7 +155,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
   </div>
@@ -176,7 +182,6 @@
   <script src="../static/js/flappy-bird.js"></script>
   <script src="../static/js/stone-paper-scissor.js"></script>
   <script src="../static/js/game2048.js"></script>
-  <script src="../static/js/object-falling.js"></script>
   <script src="../static/js/games.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -10,25 +10,32 @@
 </head>
 
 <body>
-  <div class="container navbar1">
-    <ul class="nav nav-pills p-2 align-center main-navbar">
-      <li class="nav-item">
-        <a class="nav-link active bg-success" href="/main">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/games">Games</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="/profile">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white bg-danger logout " style="cursor: pointer;" data-bs-toggle="modal"
-          data-bs-target="#logoutmodal">Log Out</a>
-      </li>
-    </ul>
+  <div class="container">
+
+    <div class="container navbar1">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white" href="/main">GameZone</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navlinks navbar-nav">
+              <a class="nav-link text-white active bg-success" href="/main">Home</a>
+              <a class="nav-link text-white  " href="/games">Games</a>
+              <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
+              <a class="nav-link text-white" href="/profile">Profile</a>
+
+
+              <button id="logout" class="nav-link text-white bg-danger" data-bs-toggle="modal"
+                data-bs-target="#logoutmodal">Log Out</button>
+
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
   </div>
 
   <div class="container">
@@ -87,34 +94,37 @@
     <h2 class="text-white">
       Recommendations
     </h2>
-  <hr class="container" style="height: 15px; background: rgb(255, 255, 255);">
-    
+    <hr class="container" style="height: 15px; background: rgb(255, 255, 255);">
+
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card h-100">
-          <img src="https://images.pexels.com/photos/139167/pexels-photo-139167.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="...">
+          <img src="https://images.pexels.com/photos/139167/pexels-photo-139167.jpeg?auto=compress&cs=tinysrgb&w=600"
+            class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Tic Tac Toe</h5>
-            
+
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="https://images.pexels.com/photos/1174746/pexels-photo-1174746.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="...">
+          <img src="https://images.pexels.com/photos/1174746/pexels-photo-1174746.jpeg?auto=compress&cs=tinysrgb&w=600"
+            class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">Flappy Bird</h5>
-            
+
           </div>
         </div>
       </div>
       <div class="col">
         <div class="card h-100">
-          <img src="https://images.pexels.com/photos/3405456/pexels-photo-3405456.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="...">
+          <img src="https://images.pexels.com/photos/3405456/pexels-photo-3405456.jpeg?auto=compress&cs=tinysrgb&w=600"
+            class="card-img-top" alt="...">
           <div class="card-body">
             <h5 class="card-title">2048</h5>
-            
+
           </div>
         </div>
       </div>
@@ -125,7 +135,7 @@
 
 
   <div class="container">
-    
+
   </div>
 
   <div class="modal fade" id="logoutmodal">
