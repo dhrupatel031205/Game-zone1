@@ -41,28 +41,32 @@
             <h2>
                 Your Profile :
             </h2>
-            {% for user in profile_data %}
-            <div class="bg-info p-2 m-2">
+            <div class="p-4 m-2 bg-white">
 
-                <h4>
-                    Name : {{ user[2] }}
-                </h4>
-                <h4>
-                    Email : {{ user[3] }}
-                </h4>
-                <h4>
-                    Username : {{ user[1] }}
-                </h4>
+                {% for user in profile_data %}
+                <div class="bg-info p-4 m-2">
+
+                    <h4>
+                        Name : {{ user[2] }}
+                    </h4>
+                    <h4>
+                        Email : {{ user[3] }}
+                    </h4>
+                    <h4>
+                        Username : {{ user[1] }}
+                    </h4>
+
+                </div>
+                {% endfor %}
 
             </div>
-            {% endfor %}
         </div>
         <div class="container" id="games-played">
             <h2>Your Previous Score :</h2>
-            <div class="bg-white p-4">
-                <h3>Tic Tac Toe : </h3>
+            <div class="bg-white p-4 m-2">
+                <h3 class="text-center">Tic Tac Toe  </h3>
                 {% for tttdata in tic_tac_toe_data %}
-                <div class="bg-info p-2 m-2">
+                <div class="bg-info p-4 m-2">
 
                     <h4>Play : {{ loop.index }}</h4>
                     <h4>
@@ -74,10 +78,10 @@
                 </div>
                 {% endfor %}
             </div>
-            <div class="bg-white p-4">
-                <h3>Flappy Bird : </h3>
+            <div class="bg-white p-4 m-2">
+                <h3 class="text-center">Flappy Bird </h3>
                 {% for fddata in flappy_bird_data %}
-                <div class="bg-info p-4">
+                <div class="bg-info p-4 m-2">
 
                     <h4>Play : {{ loop.index }}</h4>
                     <h4>
@@ -90,8 +94,8 @@
 
                 {% endfor %}
             </div>
-            <div class="bg-white p-4">
-                <h3>Stone Paper Scissor : </h3>
+            <div class="bg-white p-4 m-2">
+                <h3 class="text-center">Stone Paper Scissor  </h3>
                 {% for spcdata in rock_paper_scissor_data %}
                 <div class="m-2 bg-info p-2">
 
@@ -115,8 +119,8 @@
                 </div>
                 {% endfor %}
             </div>
-            <div class="bg-white p-4">
-                <h3>Game 2048 : </h3>
+            <div class="bg-white p-4 m-2">
+                <h3 class="text-center">Game 2048  </h3>
                 {% for g2048data in game_2048_data %}
                 <div class="m-2 bg-info p-2">
 
