@@ -29,8 +29,7 @@ def save_tic_tac_toe_data():
         return jsonify({'message': 'Game data saved successfully!'}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
-
+    
 @games_bp.route("/save_flappy_bird_data",methods =['POST']) 
 def save_flappy_bird_data() :
     try:
