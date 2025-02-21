@@ -43,9 +43,7 @@
       text-shadow: 0 0 10px cyan;
     }
 
-    .container {
-      animation: fadeIn 1.5s ease-in-out;
-    }
+
 
     @keyframes fadeIn {
       from {
@@ -92,6 +90,10 @@
     .card img {
       height: 150px;
       object-fit: cover;
+    }
+
+    .container {
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .container .row {
@@ -144,37 +146,34 @@
       box-shadow: 0 0 10px cyan, 0 0 15px cyan inset;
     }
   </style>
-    <link rel="stylesheet" href="../static/modal.css">
+  <link rel="stylesheet" href="../static/modal.css">
 
 </head>
 
 <body>
   <div class="container">
-
-    <div class="container navbar1">
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand text-white" href="/main">GameZone</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navlinks navbar-nav">
-              <a class="nav-link text-white" href="/main">Home</a>
-              <a class="nav-link  active  " href="/games">Games</a>
-              <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
-              <a class="nav-link text-white" href="/profile">Profile</a>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/main">GameZone</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navlinks navbar-nav">
+            <a class="nav-link text-white" href="/main">Home</a>
+            <a class="nav-link  active  " href="/games">Games</a>
+            <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
+            <a class="nav-link text-white" href="/profile">Profile</a>
 
 
-              <button id="logout" class="nav-link text-white bg-danger" data-bs-toggle="modal"
-                data-bs-target="#logoutmodal">Log Out</button>
+            <button id="logout" class="nav-link text-white bg-danger" data-bs-toggle="modal"
+              data-bs-target="#logoutmodal">Log Out</button>
 
-            </div>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   </div>
 
 
@@ -196,9 +195,9 @@
       </li>
     </ul>
 
-    <div class="tab-content container">
+    <div class="tab-content ">
       <div class="tab-pane fade show active" id="game-1">
-        <div id="gameBoard" class="">
+        <div id="gameBoard" class="container">
           <div class="row justify-content-center">
             <div class="col-2 ox" tabindex="0"></div>
             <div class="col-2 ox" tabindex="0"></div>
@@ -218,14 +217,14 @@
             <p class="col display-4 text-center" id="messageB">X Turn</p>
           </div>
           <div class="row justify-content-center p-2 m-2">
-            <button class="game-button"  id="restartB">Reset Game</button>
+            <button class="game-button" id="restartB">Reset Game</button>
           </div>
         </div>
       </div>
 
-      
+
       <div class="tab-pane fade" id="game-2">
-        <div class="game-container2">
+        <div class="container game-container2">
           <canvas id="gameCanvas" width="400" height="600"></canvas>
           <button id="startButton3" class="game-button">Start Game</button>
           <button id="restartButton3" class="game-button">Restart Game</button>
@@ -298,21 +297,21 @@
 
   <div class="modal fade" id="logoutmodal">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">⚠️ Log Out?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure you want to leave GameZone?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-bs-dismiss="modal">No, Stay</button>
-                <a type="button" class="btn" href="/logout">Yes, Log Out</a>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">⚠️ Log Out?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
+        <div class="modal-body">
+          <p>Are you sure you want to leave GameZone?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">No, Stay</button>
+          <a type="button" class="btn" href="/logout">Yes, Log Out</a>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
 
 
   <script src="../static/js/tic-tac-toe.js"></script>

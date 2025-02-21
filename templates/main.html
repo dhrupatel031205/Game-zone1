@@ -165,7 +165,38 @@
       font-size: 0.9rem;
       color: gray;
     }
+
+    .container {
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
     
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    
+    .slide-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .gamezone-footer {
+      background: #121212;
+      padding: 20px 0;
+      border-top: 2px solid cyan;
+      box-shadow: 0 0 15px cyan;
+    }
   </style>
   <link rel="stylesheet" href="../static/modal.css">
 
@@ -259,7 +290,7 @@
     <h2 class="text-white text-center mb-4">Frequently Asked Questions</h2>
     <div class="row row-cols-1 row-cols-md-2 g-4">
 
-      <div class="col">
+      <div class="col fade-in">
         <div class="card text-white bg-dark border-cyan shadow-lg">
           <div class="card-body">
             <h5 class="card-title">What is GameZone?</h5>
@@ -268,7 +299,7 @@
         </div>
       </div>
 
-      <div class="col">
+      <div class="col fade-in">
         <div class="card text-white bg-dark border-cyan shadow-lg">
           <div class="card-body">
             <h5 class="card-title">How do I create an account?</h5>
@@ -277,7 +308,7 @@
         </div>
       </div>
 
-      <div class="col">
+      <div class="col fade-in">
         <div class="card text-white bg-dark border-cyan shadow-lg">
           <div class="card-body">
             <h5 class="card-title">Is GameZone free to use?</h5>
@@ -302,18 +333,17 @@
     <h2 class="text-white text-center mb-4">Player Reviews</h2>
     <div class="row row-cols-1 row-cols-md-2 g-4">
 
-      <div class="col">
+      <div class="col slide-up">
         <div class="card text-white bg-dark border-cyan shadow-lg">
           <div class="card-body">
             <h5 class="card-title">John Doe</h5>
-            <p class="card-text">"GameZone is amazing! The games are fun, and the interface is super cool. Highly
-              recommend!"</p>
+            <p class="card-text">"GameZone is amazing! The games are fun, and the interface is super cool. "</p>
             <p class="text-warning">⭐⭐⭐⭐⭐</p>
           </div>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col slide-up">
         <div class="card text-white bg-dark border-cyan shadow-lg">
           <div class="card-body">
             <h5 class="card-title">Emily Smith</h5>
@@ -325,7 +355,7 @@
 
       <div class="col">
         <div class="card text-white bg-dark border-cyan shadow-lg">
-          <div class="card-body">
+          <div class="card-body slide-up">
             <h5 class="card-title">Alex Johnson</h5>
             <p class="card-text">"Fantastic platform! The futuristic design makes it even more immersive."</p>
             <p class="text-warning">⭐⭐⭐⭐⭐</p>
@@ -333,7 +363,7 @@
         </div>
       </div>
 
-      <div class="col">
+      <div class="col slide-up">
         <div class="card text-white bg-dark border-cyan shadow-lg">
           <div class="card-body">
             <h5 class="card-title">Sophia Williams</h5>
@@ -364,7 +394,7 @@
     </div>
   </div>
 
-  <footer class="gamezone-footer">
+  <footer class="gamezone-footer slide-up">
     <div class="footer-container">
       <div class="footer-logo">
         <h2>GameZone</h2>
@@ -413,8 +443,21 @@
         setTimeout(typeEffect, speed);
       }
     }
+    document.addEventListener("DOMContentLoaded", function () {
+      const elements = document.querySelectorAll(".fade-in, .slide-up");
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, { threshold: 0.2 });
+      elements.forEach(element => observer.observe(element));
+    });
+
 
     document.addEventListener("DOMContentLoaded", typeEffect);
+
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
