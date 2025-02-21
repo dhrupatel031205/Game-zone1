@@ -7,13 +7,19 @@
   height: 100px;
   width: 100px;
   margin: 10px;
-  background: #ff9797;
+  background: cyan;
   cursor: pointer;
   border-radius: 20px;
   user-select: none;
 }
 
 #gameBoard {
-  background: #f5f5f5;
-  padding: 40px;
+  border: 2px solid cyan;
+  box-shadow: 0 0 10px cyan;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #121212;
+  color: #fff;
+
 }

@@ -256,3 +256,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+-- Granthalaya is an simple user friendly website where user can enter into the website using his/her email and username and than user can explore the different ebooks and if user want to purchase that ebook user can add that book to the cart and than after make cart final user can checkout the cart and  get the zip file of the cart which has bill of that cart and the pdfs of the books 

@@ -1,11 +1,15 @@
 .game-container2 {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
+  border: 2px solid cyan;
+  box-shadow: 0 0 10px cyan;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #121212;
+  color: #fff;
 }
 
 canvas {
-  background: #fff;
+  background: rgb(228, 252, 252);
   border: 1px solid #000;
 }
 
@@ -20,8 +24,4 @@ canvas {
 
 #restartButton3 {
   display: none;
-}
-
-#game-2 {
-  background: #fc6363;
 }

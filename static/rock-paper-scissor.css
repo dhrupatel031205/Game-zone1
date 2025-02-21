@@ -1,52 +1,66 @@
+
 .game-3 {
-    height: 600px;
-    background-color: #ff6cf8;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  border: 2px solid cyan;
+  box-shadow: 0 0 10px cyan;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #121212;
+  color: #fff;
+  padding: 20px;
 }
 h1 {
-    font-size: 28px;
-    color: #333;
+  font-size: 28px;
+  color: #f1f7f9;
+  /* color: #333; */
 }
 
 .choice-btn {
-    border-radius: 10px;
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.2s ease;
+  border-radius: 10px;
+  padding: 25px;
+  text-align: center;
+  transition: transform 0.2s ease;
 }
 
 .choice-btn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 #result {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
+  font-size: 20px;
+  font-weight: bold;
+  color: #f1f7f9;
 }
 
 #score {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 button i {
-    font-size: 50px;
+  font-size: 50px;
 }
 
-#player-score, #computer-score, #tie-count {
-    font-weight: bold;
+#player-score,
+#computer-score,
+#tie-count {
+  font-weight: bold;
 }
 
 .d-flex {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 @media (max-width: 576px) {
-    .choice-btn {
-        margin-bottom: 15px;
-        width: 80%;
-    }
+  .choice-btn {
+    margin-bottom: 15px;
+    width: 80%;
+  }
+}
+
+.cbtn{
+    background: cyan;
+
+}
+.cbtn:hover{
+    color: rgb(255, 255, 255);
 }

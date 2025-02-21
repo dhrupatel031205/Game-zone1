@@ -5,20 +5,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="../static/index.css">
-    <link rel="stylesheet" href="../static/profile.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
+    <style>
+        body {
+            background: #0f0f0f;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.9);
+            border-bottom: 2px solid cyan;
+            box-shadow: 0 0 15px cyan;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px cyan;
+        }
+
+        .nav-link:hover {
+            text-shadow: 0 0 10px cyan;
+        }
+
+        .container {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            border: 2px solid cyan;
+            box-shadow: 0 0 10px cyan;
+            transition: transform 0.3s ease-in-out;
+            max-width: 350px;
+            margin: 20px auto;
+            background-color: #121212;
+            color: #fff;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px cyan;
+        }
+
+        .bg-white {
+            background-color: #222 !important;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .bg-info {
+            background-color: cyan !important;
+            color: #000;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .active {
+            background: cyan;
+            color: black;
+            box-shadow: 0 0 25px white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOutDown {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .history{
+            color: #fff;
+            background: black;
+            box-shadow: 0 0 20px cyan;
+        }
+    </style>
+    <link rel="stylesheet" href="../static/modal.css">
 </head>
 
 <body>
-
     <div class="container">
-
-    <div class="container navbar1">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg p-2">
+            <div class="container">
                 <a class="navbar-brand text-white" href="/main">GameZone</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
@@ -26,144 +126,71 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navlinks navbar-nav">
+                    <div class="navlinks navbar-nav p-2">
                         <a class="nav-link text-white" href="/main">Home</a>
-                        <a class="nav-link text-white  " href="/games">Games</a>
-                        <a class="nav-link text-white" href="/ContactUs">Contact Us</a>
-                        <a class="nav-link text-white active bg-success" href="/profile">Profile</a>
-
-
+                        <a class="nav-link text-white" href="/games">Games</a>
+                        <a class="nav-link text-white " href="/ContactUs">Contact Us</a>
+                        <a class="nav-link active " href="/profile">Profile</a>
                         <button id="logout" class="nav-link text-white bg-danger" data-bs-toggle="modal"
                             data-bs-target="#logoutmodal">Log Out</button>
-
                     </div>
                 </div>
             </div>
         </nav>
     </div>
-</div>
-    <div class="container">
 
-        <div class="container " id="profile">
-            <h2>
-                Your Profile :
-            </h2>
-            <div class="p-4 m-2 bg-white">
-
-                {% for user in profile_data %}
-                <div class="bg-info p-4 m-2">
-
-                    <h4>
-                        Name : {{ user[2] }}
-                    </h4>
-                    <h4>
-                        Email : {{ user[3] }}
-                    </h4>
-                    <h4>
-                        Username : {{ user[1] }}
-                    </h4>
-
-                </div>
-                {% endfor %}
-
+    <div class="container history my-4">
+        <h2>Your Profile</h2>
+        <div class="bg-white">
+            {% for user in profile_data %}
+            <div class="bg-info my-3">
+                <h4>Name: {{ user[2] }}</h4>
+                <h4>Email: {{ user[3] }}</h4>
+                <h4>Username: {{ user[1] }}</h4>
             </div>
-        </div>
-        <div class="container" id="games-played">
-            <h2>Your Previous Score :</h2>
-            <div class="bg-white p-4 m-2">
-                <h3 class="text-center">Tic Tac Toe </h3>
-                {% for tttdata in tic_tac_toe_data %}
-                <div class="bg-info p-4 m-2">
-
-                    <h4>Play : {{ loop.index }}</h4>
-                    <h4>
-                        Result : {{ tttdata[2] }}
-                    </h4>
-                    <h4>
-                        Time : {{ tttdata[3] }}
-                    </h4>
-                </div>
-                {% endfor %}
-            </div>
-            <div class="bg-white p-4 m-2">
-                <h3 class="text-center">Flappy Bird </h3>
-                {% for fddata in flappy_bird_data %}
-                <div class="bg-info p-4 m-2">
-
-                    <h4>Play : {{ loop.index }}</h4>
-                    <h4>
-                        Result : {{ fddata[2] }}
-                    </h4>
-                    <h4>
-                        Time : {{ fddata[3] }}
-                    </h4>
-                </div>
-
-                {% endfor %}
-            </div>
-            <div class="bg-white p-4 m-2">
-                <h3 class="text-center">Stone Paper Scissor </h3>
-                {% for spcdata in rock_paper_scissor_data %}
-                <div class="m-2 bg-info p-2">
-
-                    <h4>Play : {{ loop.index }}</h4>
-                    <h4>
-                        Player Score : {{ spcdata[2] }}
-                    </h4>
-                    <h4>
-                        Computer Score : {{ spcdata[3] }}
-                    </h4>
-                    <h4>
-                        Tie Score : {{ spcdata[4] }}
-                    </h4>
-                    <h4>
-                        Result : {{ spcdata[5] }}
-                    </h4>
-                    <h4>
-                        Time : {{ spcdata[6] }}
-                    </h4>
-
-                </div>
-                {% endfor %}
-            </div>
-            <div class="bg-white p-4 m-2">
-                <h3 class="text-center">Game 2048 </h3>
-                {% for g2048data in game_2048_data %}
-                <div class="m-2 bg-info p-2">
-
-                    <h4>Play : {{ loop.index }}</h4>
-                    <h4>
-                        Score : {{ g2048data[2] }}
-                    </h4>
-                    <h4>
-                        Time Duration : {{ g2048data[3] }}
-                    </h4>
-                    <h4>
-                        Time : {{ g2048data[4] }}
-                    </h4>
-
-                </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
+
+    <div class="container history my-4">
+        <h2>Your Previous Scores</h2>
+        {% for game, data in [('Tic Tac Toe', tic_tac_toe_data), ('Flappy Bird', flappy_bird_data), ('Rock Paper Scissors', rock_paper_scissor_data), ('Game 2048', game_2048_data)] %}
+        <div class="bg-white my-3 p-3">
+            <h3 class="text-center">{{ game }}</h3>
+            <div class="row justify-content-center">
+                {% for record in data %}
+                <div class="col-md-3 col-sm-6 bg-info m-2 p-2 text-center">
+                    <h5>Play {{ loop.index }}</h5>
+                    {% for value in record[2:] %}
+                    <p>{{ value }}</p>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    
     <div class="modal fade" id="logoutmodal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Log Out</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title">⚠️ Log Out?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    Do you want to log out from the game zone ...?
+                    <p>Are you sure you want to leave GameZone?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                    <a type="button" class="btn btn-primary" href="/logout">Yes</a>
+                    <button type="button" class="btn" data-bs-dismiss="modal">No, Stay</button>
+                    <a type="button" class="btn" href="/logout">Yes, Log Out</a>
                 </div>
             </div>
         </div>
     </div>
+    
+
 </body>
 
 </html>

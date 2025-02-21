@@ -22,7 +22,8 @@ function drawBird() {
 }
 
 function drawPipes() {
-  ctx.fillStyle = "green";
+  ctx.fillStyle = "black";
+  ctx.boxshadow = "cyan"
   pipes.forEach((pipe) => {
     ctx.fillRect(pipe.x, 0, pipeWidth, pipe.top);
     ctx.fillRect(pipe.x, pipe.bottom, pipeWidth, canvas.height - pipe.bottom);

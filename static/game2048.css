@@ -1,16 +1,17 @@
 .game4 {
-  background: #63e5a2;
-  height: 600px;
-  font-family: 'Arial', sans-serif;
-  padding: 50px;
-  height: 100vh;
-  margin: 0;
+  border: 2px solid cyan;
+  box-shadow: 0 0 10px cyan;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #121212;
+  color: #fff;
   display: flex;
   justify-content: center;
 }
 
 .game-container4 {
-  background: #bbada0;
+  background: #302f2e;
   border-radius: 10px;
   padding: 20px;
   width: 370px;
@@ -29,71 +30,21 @@
 }
 
 .tile {
-  background: #cdc1b4;
+  background:black;
+  border: 2px solid cyan;
   border-radius: 5px;
   height: 70px;
   width: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #776e65;
 }
 
-.tile[data-value="2"] {
-  background: #eee4da;
-  color: #776e65;
-}
-
-.tile[data-value="4"] {
-  background: #ede0c8;
-  color: #776e65;
-}
-
-.tile[data-value="8"] {
-  background: #f2b179;
-  color: #f9f6f2;
-}
-
-.tile[data-value="16"] {
-  background: #f59563;
-  color: #f9f6f2;
-}
-
-.tile[data-value="32"] {
-  background: #f67c5f;
-  color: #f9f6f2;
-}
-
-.tile[data-value="64"] {
-  background: #f65e3b;
-  color: #f9f6f2;
-}
-
-.tile[data-value="128"] {
-  background: #edcf72;
-  color: #f9f6f2;
-}
-
-.tile[data-value="256"] {
-  background: #edcc61;
-  color: #f9f6f2;
-}
-
-.tile[data-value="512"] {
-  background: #edc850;
-  color: #f9f6f2;
-}
-
-.tile[data-value="1024"] {
-  background: #edc53f;
-  color: #f9f6f2;
-}
-
-.tile[data-value="2048"] {
-  background: #edc22e;
-  color: #f9f6f2;
+.data{
+  text-shadow: 0 0 15px cyan;
+  color: cyan;
+  background: black;;
+  font-size: 20px;
 }
 
 .controls {
