@@ -36,17 +36,17 @@
             animation: fadeIn 1.5s ease-in-out;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-20px);
+                }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
             }
-        }
 
         .card {
             border: 2px solid cyan;
@@ -154,13 +154,22 @@
 
     <div class="container history my-4">
         <h2>Your Previous Scores</h2>
-        {% for game, data in [('Tic Tac Toe', tic_tac_toe_data), ('Flappy Bird', flappy_bird_data), ('Rock Paper Scissors', rock_paper_scissor_data), ('Game 2048', game_2048_data)] %}
+    
+        {% for game, data in [('Tic Tac Toe', tic_tac_toe_data), 
+                              ('Flappy Bird', flappy_bird_data), 
+                              ('Rock Paper Scissors', rock_paper_scissor_data), 
+                              ('Game 2048', game_2048_data)] %}
+    
         <div class="bg-white my-3 p-3">
+            <!-- Game Title -->
             <h3 class="text-center">{{ game }}</h3>
+    
             <div class="row justify-content-center">
                 {% for record in data %}
                 <div class="col-md-3 col-sm-6 bg-info m-2 p-2 text-center">
                     <h5>Play {{ loop.index }}</h5>
+    
+                    <!-- Display Score Details -->
                     {% for value in record[2:] %}
                     <p>{{ value }}</p>
                     {% endfor %}
@@ -168,7 +177,10 @@
                 {% endfor %}
             </div>
         </div>
+    
         {% endfor %}
+    </div>
+    
     </div>
     
     
