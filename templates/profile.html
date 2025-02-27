@@ -36,17 +36,17 @@
             animation: fadeIn 1.5s ease-in-out;
         }
 
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: translateY(-20px);
-                }
-
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .card {
             border: 2px solid cyan;
@@ -106,10 +106,63 @@
             }
         }
 
-        .history{
+        .history {
             color: #fff;
             background: black;
             box-shadow: 0 0 20px cyan;
+        }
+
+        .profile-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .update-btn {
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+
+
+        .game-button {
+            background: black;
+            color: cyan;
+            font-size: 20px;
+            font-weight: bold;
+            border: 3px solid cyan;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px cyan, 0 0 20px cyan inset;
+            animation: glow 1.5s infinite alternate;
+            width: 250px;
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 10px cyan, 0 0 20px cyan inset;
+            }
+
+            100% {
+                box-shadow: 0 0 20px cyan, 0 0 30px cyan inset;
+            }
+        }
+
+        .game-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px cyan, 0 0 40px cyan inset;
+        }
+
+        .game-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 10px cyan, 0 0 15px cyan inset;
         }
     </style>
     <link rel="stylesheet" href="../static/modal.css">
@@ -138,15 +191,19 @@
             </div>
         </nav>
     </div>
-
-    <div class="container history my-4">
-        <h2>Your Profile</h2>
-        <div class="bg-white">
+    <div class="container mt-4">
+        <h2 class="text-center">Your Profile</h2>
+        <div class="profile-container p-4">
             {% for user in profile_data %}
-            <div class="bg-info my-3">
+            <div class="bg-info p-3 my-3 rounded">
                 <h4>Name: {{ user[2] }}</h4>
                 <h4>Email: {{ user[3] }}</h4>
                 <h4>Username: {{ user[1] }}</h4>
+
+                <!-- Small Update Profile Button at the Right Side -->
+                <button type="button" class="game-button" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
+                    ✎ Update
+                </button>
             </div>
             {% endfor %}
         </div>
@@ -154,21 +211,21 @@
 
     <div class="container history my-4">
         <h2>Your Previous Scores</h2>
-    
-        {% for game, data in [('Tic Tac Toe', tic_tac_toe_data), 
-                              ('Flappy Bird', flappy_bird_data), 
-                              ('Rock Paper Scissors', rock_paper_scissor_data), 
-                              ('Game 2048', game_2048_data)] %}
-    
+
+        {% for game, data in [('Tic Tac Toe', tic_tac_toe_data),
+        ('Flappy Bird', flappy_bird_data),
+        ('Rock Paper Scissors', rock_paper_scissor_data),
+        ('Game 2048', game_2048_data)] %}
+
         <div class="bg-white my-3 p-3">
             <!-- Game Title -->
             <h3 class="text-center">{{ game }}</h3>
-    
+
             <div class="row justify-content-center">
                 {% for record in data %}
                 <div class="col-md-3 col-sm-6 bg-info m-2 p-2 text-center">
                     <h5>Play {{ loop.index }}</h5>
-    
+
                     <!-- Display Score Details -->
                     {% for value in record[2:] %}
                     <p>{{ value }}</p>
@@ -177,13 +234,13 @@
                 {% endfor %}
             </div>
         </div>
-    
+
         {% endfor %}
     </div>
-    
+
     </div>
-    
-    
+
+
     <div class="modal fade" id="logoutmodal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -201,7 +258,35 @@
             </div>
         </div>
     </div>
-    
+    <!-- Update Profile Modal -->
+    <div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProfileModalLabel">Update Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/update_profile" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <button type="submit" class="game-button">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

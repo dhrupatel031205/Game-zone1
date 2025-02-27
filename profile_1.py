@@ -102,3 +102,26 @@ def fetch_game_2048(username) :
         cursor.close()
         conn.close()
     
+
+@profile_bp.route('/update_user', methods=['POST'])
+def update_user():
+    try:
+        user_id = request.form['user_id']
+        name = request.form['name']
+        email = request.form['email']
+        message = request.form['message']
+        
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute("""
+            UPDATE users
+            SET name = %s, email = %s, message = %s
+            WHERE id = %s
+        """, (name, email, message, user_id))
+        
+        conn.commit()
+        cur.close()
+        
+        return jsonify({'success': True, 'message': 'User details updated successfully!'}), 200
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
